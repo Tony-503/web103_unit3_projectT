@@ -12,20 +12,20 @@ const App = () => {
       element: <Locations />
     },
     {
-      path: '/echolounge',
-      element: <LocationEvents index={1} />
+      path: '/locations/risk-of-rain-2',
+      element: <LocationEvents location='Risk of Rain 2' locationName='Risk of Rain 2' />
     },
     {
-      path: '/houseofblues',
-      element: <LocationEvents index={2} />
+      path: '/locations/elden-ring',
+      element: <LocationEvents location='Elden Ring' locationName='Elden Ring' />
     },
     {
-      path: '/pavilion',
-      element: <LocationEvents index={3} />
+      path: '/locations/the-witcher-3',
+      element: <LocationEvents location='The Witcher 3' locationName='The Witcher 3' />
     },
     {
-      path: '/americanairlines',
-      element: <LocationEvents index={4} />
+      path: '/locations/final-fantasy',
+      element: <LocationEvents location='Final Fantasy' locationName='Final Fantasy' />
     },
     {
       path: '/events',
@@ -37,7 +37,7 @@ const App = () => {
     <div className='app'>
 
       <header className='main-header'>
-        <h1>UnityGrid Plaza</h1>
+        <h1>BossGrid Plaza</h1>
 
         <div className='header-buttons'>
           <Link to='/' role='button'>Home</Link>

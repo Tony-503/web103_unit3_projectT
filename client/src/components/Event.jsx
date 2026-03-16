@@ -2,57 +2,98 @@ import React, { useState, useEffect } from 'react'
 import '../css/Event.css'
 
 const Event = (props) => {
-
-    const [event, setEvent] = useState([])
-    const [time, setTime] = useState([])
-    const [remaining, setRemaining] = useState([])
-
-    useEffect(() => {
-        (async () => {
-            try {
-                const eventData = await EventsAPI.getEventsById(props.id)
-                setEvent(eventData)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [])
+    const fallbackImage = `https://placehold.co/600x450/1f2937/ffffff?text=${encodeURIComponent(props.title || 'Boss')}`
+    const [dateq, setDateq] = useState('')
+    const [color2, setColor2] = useState('')
+    const [liveCountdown, setLiveCountdown] = useState('')
 
     useEffect(() => {
-        (async () => {
-            try {
-                const result = await dates.formatTime(event.time)
-                setTime(result)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [event])
+        if (!props.date) {
+            setDateq('')
+            setColor2('')
+            setLiveCountdown('')
+            return
+        }
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const timeRemaining = await dates.formatRemainingTime(event.remaining)
-                setRemaining(timeRemaining)
-                dates.formatNegativeTimeRemaining(remaining, event.id)
+        const eventDate = new Date(props.date)
+        if (Number.isNaN(eventDate.getTime())) {
+            setDateq('Invalid date')
+            setColor2('gray')
+            setLiveCountdown('')
+            return
+        }
+
+        const formatTimeLeft = (msRemaining) => {
+            const totalSeconds = Math.floor(msRemaining / 1000)
+            const days = Math.floor(totalSeconds / 86400)
+            const hours = Math.floor((totalSeconds % 86400) / 3600)
+            const minutes = Math.floor((totalSeconds % 3600) / 60)
+            const seconds = totalSeconds % 60
+
+            return `${days}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`
+        }
+
+        const updateCountdown = () => {
+            const now = new Date()
+            const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+            const eventDayStart = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate())
+
+            if (eventDayStart.getTime() === todayStart.getTime()) {
+                setDateq('Happening now!')
+                setColor2('limegreen')
+                setLiveCountdown('0d 00h 00m 00s')
+                return
             }
-            catch (error) {
-                throw error
+
+            if (eventDayStart < todayStart) {
+                setDateq('Already happened')
+                setColor2('crimson')
+                setLiveCountdown('Countdown finished')
+                return
             }
-        }) ()
-    }, [event])
+
+            setDateq('Will happen later')
+            setColor2('dodgerblue')
+            setLiveCountdown(formatTimeLeft(eventDayStart.getTime() - now.getTime()))
+        }
+
+        updateCountdown()
+        const intervalId = setInterval(updateCountdown, 1000)
+
+        return () => clearInterval(intervalId)
+    }, [props.date])
 
     return (
         <article className='event-information'>
-            <img src={event.image} />
+            {props.image && (
+                <img
+                    src={props.image}
+                    alt={props.title || 'Dungeon image'}
+                    onError={(e) => {
+                        e.currentTarget.onerror = null
+                        e.currentTarget.src = fallbackImage
+                    }}
+                />
+            )}
 
             <div className='event-information-overlay'>
                 <div className='text'>
-                    <h3>{event.title}</h3>
-                    <p><i className="fa-regular fa-calendar fa-bounce"></i> {event.date} <br /> {time}</p>
-                    <p id={`remaining-${event.id}`}>{remaining}</p>
+                    <h3>{props.title || 'Unknown Dungeon'}</h3>
+                    <p>
+                        <i className="fa-solid fa-layer-group"></i> Level: {props.level}
+                        <br />
+                        {props.date}
+                        <br />
+                        
+                    </p>
+                    <p style={{ color: color2 }}>
+                        {props.date && dateq ? dateq : null}
+                         <span className='line'></span>
+                        
+                    </p>
+                    <p><span style={{ color: color2 }}>{liveCountdown}</span></p>
+                    {props.description && <p>{props.description}</p>}
+                    <p>Health: {props.health} | Attack: {props.attack}</p>
                 </div>
             </div>
         </article>
