@@ -49,6 +49,7 @@ const LocationEvents = ({ location, locationName }) => {
                             key={event.id}
                             id={event.id}
                             title={event.name}
+                            level={event.level}
                             date={event.date}
                             time={event.type}
                             image={event.image}
