@@ -676,7 +676,7 @@
     name: "Cloud of Darkness",
     date: "February 25, 2027", // FUTURE
     location: "Final Fantasy",
-    level: "20",
+    level: "10",
     type: "void entity",
     image: "https://upload.wikimedia.org/wikipedia/en/9/94/Final_Fantasy_III_box.jpg",
     description: "Energy-based final boss with laser zone control",
@@ -734,7 +734,7 @@
   {
     id: 62,
     name: "Ultimecia",
-    date: "March 20, 2027", // FUTURE
+    date: "March 10, 2027", // FUTURE
     location: "Final Fantasy",
     level: "25",
     type: "time sorceress",
@@ -784,7 +784,7 @@
     name: "Titan",
     date: "April 10, 2027", // FUTURE
     location: "Final Fantasy",
-    level: "20",
+    level: "10",
     type: "earth summon",
     image: "https://upload.wikimedia.org/wikipedia/en/2/2c/Titan_Final_Fantasy.png",
     description: "Massive earth giant using ground smash and quake attacks",
@@ -856,7 +856,7 @@
     name: "Calamity Ganon",
     date: "May 10, 2027", // FUTURE
     location: "Zelda: Breath of the Wild",
-    level: "25",
+    level: "5",
     type: "corruption entity",
     image: "https://upload.wikimedia.org/wikipedia/en/3/3e/Calamity_Ganon.png",
     description: "Malice-infused form using elemental attacks",
@@ -928,7 +928,7 @@
     name: "Demise",
     date: "June 10, 2027", // FUTURE
     location: "Zelda",
-    level: "25",
+    level: "5",
     type: "demon god",
     image: "https://upload.wikimedia.org/wikipedia/en/9/99/Demise_Zelda.png",
     description: "Ancient demon lord wielding lightning sword attacks",
