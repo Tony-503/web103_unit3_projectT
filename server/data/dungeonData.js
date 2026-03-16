@@ -927,7 +927,7 @@
     id: 78,
     name: "Demise",
     date: "June 10, 2027", // FUTURE
-    location: "Zelda: Skyward Sword",
+    location: "Zelda",
     level: "25",
     type: "demon god",
     image: "https://upload.wikimedia.org/wikipedia/en/9/99/Demise_Zelda.png",
@@ -939,25 +939,13 @@
     id: 79,
     name: "Majora",
     date: "June 15, 2027", // FUTURE
-    location: "Zelda: Majora's Mask",
+    location: "Zelda",
     level: "25",
     type: "ancient spirit",
     image: "https://upload.wikimedia.org/wikipedia/en/2/20/Majora%27s_Mask.png",
     description: "Chaotic final boss with unpredictable attack phases",
     Health: "310",
     Attack: "45"
-  },
-  {
-    id: 80,
-    name: "Ganondorf",
-    date: "June 20, 2027", // FUTURE
-    location: "The Legend of Zelda",
-    level: "25",
-    type: "dark warlock",
-    image: "https://upload.wikimedia.org/wikipedia/en/7/70/Ganondorf.png",
-    description: "Human form of Ganon using dark magic and sword combat",
-    Health: "320",
-    Attack: "46"
   }
 ];
 
